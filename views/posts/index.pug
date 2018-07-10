@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  a(href='/') back to home
+  h1= 'posts'
+  ul
+    each post in posts
+      li: a(href='/posts/'+post.id) #{post.title}
+    else
+      li There is no posts
+
