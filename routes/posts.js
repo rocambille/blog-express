@@ -9,7 +9,10 @@ router.get('/', function(req, res, next) {
     if (err) return console.log(err);
 
     res.render('posts/index', {
-      posts: posts
+      posts: posts,
+      auth: {
+        user: req.session.user,
+      },
     });
   });
 });
@@ -30,7 +33,10 @@ router.get('/:postId', function(req, res, next) {
     if (err) return console.log(err);
 
     res.render('posts/show', {
-      post: post
+      post: post,
+      auth: {
+        user: req.session.user,
+      },
     });
   }, req.params.postId);
 });

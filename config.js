@@ -7,7 +7,10 @@ const config = {
     database: process.env.DB_DATABASE || 'db',
     username: process.env.DB_USERNAME || 'root',
     password: process.env.DB_PASSWORD || '',
-  }
+  },
+  session: {
+    secret: process.env.SESSION_KEY || '',
+  },
 };
 
 module.exports = config;

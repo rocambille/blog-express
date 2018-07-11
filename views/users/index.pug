@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  a(href='/') back to home
+  h1= 'users'
+  ul
+    each user in users
+      li: a(href='/users/'+user.id) #{user.name}
+    else
+      li There is no users
+

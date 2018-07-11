@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  a(href='/') back to home
+  h1= 'login'
+  form(action='' method='post')
+    div
+      label(for='email') email
+      input(id='email' name='email' required type='text' value=old.email)
+    div
+      label(for='password') password
+      input(id='password' name='password' required type='password' value=old.password)
+    div
+      button(role='submit') login
+
+  each error in errors
+    p #{error}
