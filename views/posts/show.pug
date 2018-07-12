@@ -11,3 +11,14 @@ block content
       input(name='_method' type='hidden' value='delete')
       button(role='submit') delete
 
+  h2= 'comments'
+  ul
+    each comment in post.comments
+      li #{comment.content}
+    else
+      li There is no posts
+  if auth.user
+    form(action='/posts/'+post.id+'/comment' method='post')
+      textarea(id='content' name='content' required)
+      button(role='submit') comment
+

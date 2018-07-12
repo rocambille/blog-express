@@ -1,5 +1,7 @@
 let db = require('./../db');
 
+let CommentModel = require('./CommentModel');
+
 let PostModel = {
   getAll: function (cb) {
     let query_string = 'SELECT * FROM posts';
@@ -16,7 +18,15 @@ let PostModel = {
     db.query(query_string, function (err, rows, fields) {
       if (err) return cb(err);
 
-      return cb(null, rows[0]);
+      let post = rows[0];
+
+      CommentModel.getAllByPost(function (err, rows) {
+        if (err) return cb(err);
+
+        post.comments = rows;
+
+        return cb(null, post);
+      }, post.id);
     });
   },
   create: function (cb, values) {

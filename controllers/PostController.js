@@ -1,3 +1,4 @@
+var CommentModel = require('./../models/CommentModel');
 var PostModel = require('./../models/PostModel');
 
 var PostController = {
@@ -141,6 +142,39 @@ var PostController = {
 
         res.redirect('/posts');
       }, post.id);
+    }, req.params.postId);
+  },
+
+  comment: function(req, res, next) {
+    if (!req.session.user) return res.redirect('/login');
+
+    PostModel.get(function (err, post) {
+      // TODO sanitization
+
+      // check required fields are filled
+      if (
+        !req.body.content
+      ) {
+        return res.render('posts/show', {
+          post: post,
+          auth: {
+            user: req.session.user,
+          },
+        });
+      }
+
+      console.log('1');
+      let values = req.body;
+      values.user_id = req.session.user.id;
+      values.post_id = post.id;
+
+      CommentModel.create(function (err) {
+        if (err) return console.log(err);
+
+      console.log('2');
+        // redirect to commented post
+        res.redirect('/posts/'+post.id);
+      }, values);
     }, req.params.postId);
   },
 };

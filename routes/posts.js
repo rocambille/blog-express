@@ -31,5 +31,9 @@ router.delete(
   '/:postId',
   PostController.destroy
 );
+router.post(
+  '/:postId/comment',
+  PostController.comment
+);
 
 module.exports = router;

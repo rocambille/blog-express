@@ -4,10 +4,11 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    if auth.user
-      a(href='/logout') logout
-    else
-      a(href='/login') login
-      a(href='/register') register
+    if auth
+      if auth.user
+        a(href='/logout') logout
+      else
+        a(href='/login') login
+        a(href='/register') register
 
     block content
