@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  a(href='/posts') back to posts
+  h1= old.title || 'create post'
+  form(action=action_url method='post')
+    div
+      label(for='title') title
+      input(id='title' name='title' required type='text' value=old.title)
+    div
+      label(for='content') content
+      textarea(id='content' name='content' required) #{old.content}
+    div
+      button(role='submit') send
+
+  each error in errors
+    p #{error}

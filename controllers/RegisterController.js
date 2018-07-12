@@ -64,7 +64,8 @@ var RegisterController = {
 
       // hash the password using bcrypt
       bcrypt.hash(req.body.password, 10, function (err, hash) {
-        req.body.hash = hash;
+        let values = req.body;
+        values.hash = hash;
 
         // create the user through the model
         UserModel.create(function (err, user) {
@@ -75,7 +76,7 @@ var RegisterController = {
 
           // redirect to user's homepage
           res.redirect('users/'+user.id);
-        }, req.body);
+        }, values);
       });
     }, req.body.email);
   },

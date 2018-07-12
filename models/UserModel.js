@@ -37,7 +37,7 @@ let UserModel = {
     db.query(query_string, function (err, rows, fields) {
       if (err) return cb(err);
 
-      usersManager.getByEmail(cb, values.email);
+      UserModel.getByEmail(cb, values.email);
     });
   },
 }

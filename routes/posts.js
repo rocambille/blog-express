@@ -1,59 +1,35 @@
 var express = require('express');
 var router = express.Router();
 
-var PostModel = require('./../models/PostModel');
+var PostController = require('./../controllers/PostController');
 
-/* index */
-router.get('/', function(req, res, next) {
-  PostModel.getAll(function (err, posts) {
-    if (err) return console.log(err);
-
-    res.render('posts/index', {
-      posts: posts,
-      auth: {
-        user: req.session.user,
-      },
-    });
-  });
-});
-
-/* create */
-router.get('/create', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-/* store */
-router.post('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-/* show */
-router.get('/:postId', function(req, res, next) {
-  PostModel.get(function (err, post) {
-    if (err) return console.log(err);
-
-    res.render('posts/show', {
-      post: post,
-      auth: {
-        user: req.session.user,
-      },
-    });
-  }, req.params.postId);
-});
-
-/* edit */
-router.get('/:postId/edit', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-/* update */
-router.post('/:postId', function(req, res, next) {
-  res.send('respond with a resource');
-});
-
-/* destroy */
-router.delete('/:postId', function(req, res, next) {
-  res.send('respond with a resource');
-});
+router.get(
+  '/',
+  PostController.index
+);
+router.get(
+  '/create',
+  PostController.create
+);
+router.post(
+  '/',
+  PostController.store
+);
+router.get(
+  '/:postId',
+  PostController.show
+);
+router.get(
+  '/:postId/edit',
+  PostController.edit
+);
+router.post(
+  '/:postId',
+  PostController.update
+);
+router.delete(
+  '/:postId',
+  PostController.destroy
+);
 
 module.exports = router;

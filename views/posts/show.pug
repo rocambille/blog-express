@@ -5,3 +5,9 @@ block content
   h1= post.title
   p= post.content
 
+  if auth.user && auth.user.id == post.user_id
+    a(href='/posts/'+post.id+'/edit') edit
+    form(action='' method='post')
+      input(name='_method' type='hidden' value='delete')
+      button(role='submit') delete
+
