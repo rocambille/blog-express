@@ -1,6 +1,6 @@
 let db = require('./../db');
 
-let usersManager = {
+let UserModel = {
   getAll: function (cb) {
     let query_string = 'SELECT * FROM users';
 
@@ -42,4 +42,4 @@ let usersManager = {
   },
 }
 
-module.exports = usersManager;
+module.exports = UserModel;

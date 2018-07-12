@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var postsManager = require('./../models/posts');
+var PostModel = require('./../models/PostModel');
 
 /* index */
 router.get('/', function(req, res, next) {
-  postsManager.getAll(function (err, posts) {
+  PostModel.getAll(function (err, posts) {
     if (err) return console.log(err);
 
     res.render('posts/index', {
@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
 
 /* show */
 router.get('/:postId', function(req, res, next) {
-  postsManager.get(function (err, post) {
+  PostModel.get(function (err, post) {
     if (err) return console.log(err);
 
     res.render('posts/show', {

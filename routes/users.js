@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
 
-var usersManager = require('./../models/users');
+var UserModel = require('./../models/UserModel');
 
 /* index */
 router.get('/', function(req, res, next) {
-  usersManager.getAll(function (err, users) {
+  UserModel.getAll(function (err, users) {
     if (err) return console.log(err);
 
     res.render('users/index', {
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 
 /* show */
 router.get('/:userId', function(req, res, next) {
-  usersManager.get(function (err, user) {
+  UserModel.get(function (err, user) {
     if (err) return console.log(err);
 
     res.render('users/show', {
